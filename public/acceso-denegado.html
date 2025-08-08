@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acceso Denegado</title>
+    <!-- INICIO: Codigo de Favicons Corregido y Optimizado -->
+     <link rel="icon" type="image/png" href="favicons/apple-touch-icon.png"> 
+    <!-- Asegurate que todos estos archivos esten en la carpeta 'public/favicons/' -->
+    <link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicons/favicon-16x16.png">
+    <link rel="manifest" href="favicons/site.webmanifest"> <!-- Ruta corregida para el manifest -->
+    <link rel="mask-icon" href="favicons/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="icon" href="favicons/favicon.ico" type="image/x-icon"> <!-- El favicon principal en formato .ico -->
+    <!-- FIN: Codigo de Favicons Corregido y Optimizado -->
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/styles.css">
+    
+</head>
+<body>
+    <header class="main-header">
+        <nav class="main-nav">
+            <!-- Contenedor del Logo -->
+            <div class="nav-logo-container">
+                <a href="/ingreso-productos"> <!-- Enlace al inicio de tu app despues del login -->
+                    <img src="favicons/favicon.ico" alt="Logo de la Empresa" class="nav-logo-img">
+                </a>
+            </div>
+             <!-- Lista de Navegacion -->
+            <ul class="nav-list">
+                <li><a href="/ingreso-productos" class="nav-link" data-i18n="common.home_link">Inicio</a></li> <!-- Cambiado a /ingreso-productos para consistencia -->
+                <li class="dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-i18n="common.actions_dropdown">Acciones <span class="arrow-down"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/ingreso-productos" class="dropdown-item" data-i18n="common.product_entry_link">Ingreso Productos</a></li>
+                        <li><a href="/registros" class="dropdown-item" data-i18n="common.recorded_entries_link">Ingresos Realizados</a></li>
+                        <li><a href="/averias" class="dropdown-item" data-i18n="common.report_damage_link">Reportar Avería</a></li>
+                    </ul>
+                </li>
+                <li><a href="/logout" class="nav-link" id="logout-btn-nav" data-i18n="common.logout_button">Cerrar Sesión</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="access-denied-container">
+        <h1 class="access-denied-title" data-i18n="access_denied.title">Acceso Denegado</h1>
+        <p class="access-denied-message" data-i18n="access_denied.message_part1">Lo sentimos, no tienes los permisos necesarios para acceder a esta seccion.</p>
+        <p class="access-denied-message" data-i18n="access_denied.message_part2">Por favor, contacta al administrador si crees que esto es un error.</p>
+        <a href="/ingreso-productos" class="access-denied-button" data-i18n="access_denied.back_button">Volver a Ingreso de Productos</a>
+    </main>
+    <!-- Puedes anadir un script para el logout si tienes el boton en esta pagina -->
+    <script src="js/i18n.js"></script>
+    <script src="js/acceso-denegado.js"></script>
+</body>
+</html>
