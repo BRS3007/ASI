@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registros</title>
+   <!-- INICIO: Codigo de Favicons Corregido y Optimizado -->
+     <link rel="icon" type="image/png" href="favicons/android-chrome-512x512.png"> 
+    <!-- Asegurate que todos estos archivos esten en la carpeta 'public/favicons/' -->
+    <link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicons/favicon-16x16.png">
+    <link rel="manifest" href="favicons/site.webmanifest"> <!-- Ruta corregida para el manifest -->
+    <link rel="mask-icon" href="favicons/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="icon" href="favicons/favicon.ico" type="image/x-icon"> <!-- El favicon principal en formato .ico -->
+    <!-- FIN: Codigo de Favicons Corregido y Optimizado -->
+    
+    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">-->
+    <link rel="stylesheet" href="css/styles.css"> 
+</head>
+<body class="background-login"> <!-- ¡CLAVE! Añadir esta clase -->
+
+    <!-- Incluir la misma barra de navegación -->
+    <header class="main-header">
+        <nav class="main-nav">
+            <div class="nav-logo-container">
+                <a href="/ingreso-productos"> <!-- Enlace al inicio de tu app despues del login -->
+                    <img src="favicons/favicon.ico" alt="Logo de la Empresa" class="nav-logo-img">
+                </a>
+            </div>
+            <ul class="nav-list">
+                <li><a href="/ingreso-productos" class="nav-link" data-i18n="common.home_link">Inicio</a></li>
+                <li class="dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-i18n="common.actions_dropdown">Acciones <span class="arrow-down"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/ingreso-productos" class="dropdown-item" data-i18n="common.product_entry_link">Ingreso Productos</a></li>
+                        <li><a href="/registros" class="dropdown-item" data-i18n="common.recorded_entries_link">Ingresos Realizados</a></li>
+                        <li><a href="/averias" class="dropdown-item" data-i18n="common.report_damage_link">Reportar Avería</a></li>
+                    </ul>
+                </li>
+                <li><a href="/logout" class="nav-link" id="logout-btn-nav" data-i18n="common.logout_button">Cerrar Sesión</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h1 class="page-title" data-i18n="registros.page_title">Ingresos de Productos Realizados</h1>
+
+        <!-- SECCIÓN: EXPORTAR POR RANGO DE FECHA -->
+        <h2 data-i18n="registros.export_by_date_range_title">Exportar Registros por Rango de Fecha</h2>
+        <div class="filter-section">
+            <div class="date-filter-group">
+                <label for="fecha-inicio" data-i18n="common.date_start_label">Fecha Inicio:</label>
+                <input type="date" id="fecha-inicio">
+                <label for="fecha-fin" data-i18n="common.date_end_label">Fecha Fin:</label>
+                <input type="date" id="fecha-fin">
+                <button id="filter-btn" class="btn-secondary" data-i18n="common.filter_button">Filtrar</button>
+                <button id="clear-filter-btn" class="btn-secondary" data-i18n="common.clear_filter_button">Limpiar Filtro</button>
+            </div>
+
+            <div class="export-controls">
+                <!--<i class="fas fa-file-excel export-icon"></i> -->
+                <a id="export-excel-btn" class="btn-primary" href="ruta/a/tu/archivo/excel.xlsx" download>
+                    <img src="imagenes/excel.png" alt="Exportar a Excel">
+                </a>
+                <!--<button id="export-excel-btn" class="btn-primary" data-i18n="common.export_button">Exportar</button>-->
+            </div>
+        </div>
+
+        <hr style="margin: 40px auto; width: 100%; border-top: 1px solid #eee;"> 
+
+        <h2 data-i18n="registros.detailed_product_list_title">Lista Detallada de Productos</h2>
+
+        <!-- CAMPO DE BÚSQUEDA -->
+        <div class="search-container">
+            <label for="search-input" class="sr-only" data-i18n="registros.search_products_label">Buscar productos:</label>
+            <input type="text" id="search-input" placeholder="Buscar..." class="search-input" data-i18n="[placeholder]registros.search_placeholder">
+            <button id="search-btn" class="btn-secondary" data-i18n="common.search_button">Buscar</button>
+            <button id="clear-search-btn" class="btn-secondary" data-i18n="common.clear_search_button">Limpiar Búsqueda</button>
+        </div>
+
+        <!-- Contenedor para la tabla de productos -->
+        <div class="table-container">
+            <table id="productos-table">
+                <thead>
+                    <tr>
+                        <th data-i18n="registros.table_barcode">Código de Barras</th>
+                        <th data-i18n="registros.table_code">Código</th>
+                        <th data-i18n="registros.table_description">Descripción</th>
+                        <th data-i18n="registros.table_quantity">Cantidad</th>
+                        <th data-i18n="registros.table_date">Fecha</th>
+                        <th data-i18n="registros.table_price">Precio</th>
+                        <th data-i18n="registros.table_aisle">Pasillo</th>
+                        <th data-i18n="registros.table_actions">Acciones</th> 
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Aquí se insertarán las filas de productos con JavaScript -->
+                </tbody>
+            </table>
+            <p id="no-products-message" style="text-align: center; color: #888; margin-top: 20px;" data-i18n="common.no_products_registered">No hay productos registrados aún.</p>
+        </div>
+    </main>
+     <!-- El script para esta página -->
+    <script src="js/i18n.js"></script>
+     <script src="js/registros.js"></script>
+    <script src="js/common.js"></script>
+</body>
+</html>

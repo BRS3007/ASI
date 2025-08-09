@@ -1,0 +1,665 @@
+/* --- Estilos Generales y del Body --- */
+body {
+    font-family: 'Roboto', sans-serif; 
+    margin: 0;
+    padding: 0;
+    display: flex; 
+    flex-direction: column; /* Cambiado a columna para que el header esté arriba */
+    align-items: center; /* Centrar el contenido horizontalmente */
+    min-height: 100vh; 
+    background-color: #f4f7f6; /* Un color de fondo suave */
+    color: #333;
+}
+
+/* Fondo para la pagina de Ingreso de Productos */
+body.background-ingreso-productos {
+    background-image: url('imagenes/android-chrome-192x192.png'); /* AJUSTA ESTA RUTA A TU IMAGEN DE HERRAMIENTAS */
+    background-size: cover; /* Cubre todo el fondo */
+    background-position: center; /* Centra la imagen */
+    background-attachment: fixed; /* La imagen se queda fija al hacer scroll */
+    background-repeat: no-repeat;
+}
+
+/* Fondo para la pagina de Ingresos Realizados */
+body.background-registros {
+    background-image: url('imagenes/tu-otra-imagen.png'); /* AJUSTA ESTA RUTA A TU OTRA IMAGEN */
+    background-size: cover; 
+    background-position: center; 
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+/* --- Estilos para el Contenedor Principal de Contenido (main) --- */
+main {
+    width: 100%; /* ¡CLAVE! Ocupa el 100% del ancho del body */
+    max-width: none; /* ¡CLAVE! Eliminar el max-width fijo para que se "despliegue" */
+    margin: 0; /* ¡CLAVE! Eliminar los márgenes automáticos para que ocupe todo */
+    padding: 30px; /* Mantener padding interno */
+    border-radius: 0; /* ¡CLAVE! Eliminar border-radius para que se vea como un gran bloque */
+    box-shadow: none; /* ¡CLAVE! Eliminar la sombra para que se vea "desplegado" */
+    box-sizing: border-box; 
+    flex-grow: 1;
+    display: flex; /* Usar flexbox para centrar el contenido */
+    flex-direction: column; /* Apilar titulo y formulario */
+    align-items: center; /* Centrar horizontalmente el contenido del main */
+    justify-content: flex-start; /* Alinear arriba, no centrar verticalmente todo el main */
+}
+
+/* --- Estilos para la Barra de Navegación (Header) --- */
+.main-header {
+    background-color: white; /* Fondo oscuro (azul en tu imagen) */
+    padding: 1px 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    width: 100%; /* ¡CLAVE! Ocupa el 100% del ancho del body */
+    position: sticky; 
+    top: 0;
+    z-index: 100; 
+}
+
+.main-nav {
+    display: flex; /* Usar flexbox para alinear el logo y la lista */
+    justify-content: space-between; /* Espacio entre el logo y la lista de navegacion */
+    align-items: center; /* Centrar verticalmente los elementos */
+    max-width: 1200px; /* Opcional: un max-width para el contenido de la nav */
+    margin: 0 auto; /* Centrar la nav */
+    padding: 0 20px; /* Padding a los lados */
+    box-sizing: border-box;
+    width: 100%; /* La navegación interna también ocupa todo el ancho del header */
+}
+
+.nav-logo-container {
+    display: flex;
+    align-items: center;
+    margin-right: 20px; /* Espacio a la derecha del logo */
+}
+
+.nav-logo-img { /* Cambiado de .nav-logo a .nav-logo-img para tu HTML */
+    height: 40px; /* Altura del logo, ajusta segun tu diseno */
+    width: auto; /* Ancho automatico para mantener la proporcion */
+    border-radius: 50%; /* Opcional: si quieres que el logo sea redondo */
+    box-shadow: 0 0 8px rgba(0,0,0,0.3); /* Opcional: sombra sutil */
+    transition: transform 0.3s ease;
+}
+
+.nav-logo-img:hover {
+    transform: scale(1.05); /* Pequeno efecto al pasar el raton */
+}
+
+.nav-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: flex-start; 
+    align-items: center;
+}
+
+.nav-list li {
+    position: relative; 
+    margin-right: 30px; 
+}
+
+.nav-list a {
+    color: #ff1908;
+    text-decoration: none;
+    padding: 10px 15px;
+    display: block;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.nav-list a:hover {
+    background-color: #555;
+    border-radius: 4px;
+    color: white; /* Asegura que el texto cambie de color al pasar el raton */
+}
+
+/* Estilos para el menú desplegable */
+.dropdown-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 100%; 
+    left: 0;
+    background-color: white; 
+    min-width: 180px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    z-index: 1000; 
+    opacity: 0; 
+    visibility: hidden; 
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    border-radius: 0 0 4px 4px; /* Bordes redondeados solo abajo */
+}
+
+.dropdown-menu li {
+    margin: 0; 
+}
+
+.dropdown-menu .dropdown-item {
+    color: #ff1908;
+    padding: 10px 15px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-menu .dropdown-item:hover {
+    background-color: #666;
+    color: white; /* Asegura que el texto cambie de color al pasar el raton */
+}
+
+/* Mostrar el menú desplegable al pasar el ratón */
+.nav-list li.dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Flecha para el menú desplegable */
+.arrow-down {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 5px;
+    vertical-align: middle;
+    border-top: 5px solid #333; /* Color de la flecha, ajusta si es necesario */
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent;
+}
+
+
+/* --- Estilos para Títulos --- */
+h1, h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 50px;
+    font-size: 2.2em;
+    font-weight: 800;
+}
+h2 {
+    font-size: 1.8em;
+    margin-top: 100px;
+    margin-bottom: 20px;
+}
+
+/* --- Estilos para el Formulario de Ingreso de Productos --- */
+#form-ingreso-productos {
+    display: flex; 
+    flex-wrap: wrap; 
+    justify-content: space-between; 
+    gap: 20px; 
+    width: 100%; 
+    max-width: 900px; /* Añadido max-width para el formulario principal */
+    margin: 20px auto; /* Centrar el formulario */
+}
+
+/* Estilos para cada grupo de campo (label + input/textarea) */
+.form-group {
+    display: flex;
+    flex-direction: column; 
+    margin-bottom: 15px; 
+    /* ¡CLAVE! Correccion de flex-basis. Esto asegura 3 columnas con un gap de 20px */
+    flex: 1 1 calc(33.33% - 13.33px); /* flex-grow, flex-shrink, flex-basis */
+    min-width: 200px; /* Mínimo ancho para evitar que se aplasten demasiado */
+    box-sizing: border-box;
+}
+
+/* Estilos para las etiquetas (títulos de los campos) */
+.form-group label {
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #555;
+    font-size: 0.95em;
+}
+
+/* Estilos para los campos de entrada generales (input y textarea) */
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group input[type="date"],
+.form-group textarea,
+.form-group select { /* Incluido select aqui */
+    width: 100%; 
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px; 
+    font-size: 1em;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+    box-sizing: border-box; 
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+/* Estilos ESPECÍFICOS para el TEXTAREA */
+.form-group textarea {
+    height: 44px; /* Altura fija para que coincida con los input */
+    min-height: 44px; 
+    max-height: 100px; /* Permitir un poco de crecimiento si es necesario, o mantener fijo */
+    resize: vertical; /* Permitir redimensionar solo verticalmente, o 'none' para deshabilitar */
+    overflow: auto; 
+}
+
+/* Efecto hover/focus para los campos de entrada */
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus { 
+    border-color: #007bff; 
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.25);
+    outline: none;
+}
+
+/* --- Estilos para Botones de Formulario y Acciones --- */
+
+/* Estilos generales para botones primarios y secundarios */
+.btn-primary,
+.btn-secondary {
+    padding: 10px 18px;
+    
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    text-align: center;
+    display: inline-block;
+    margin-right: 10px; 
+}
+
+.btn-primary {
+    background-color: #f7f5f5; 
+    color: white;
+    box-shadow: 0 4px 10px rgba(114, 228, 124, 0.2);
+}
+.export-controls img {
+    width: 30px; 
+    height: 30px; 
+    vertical-align: middle; 
+    margin-right: 5px; 
+}
+
+
+.btn-primary:hover {
+    background-color: #9ee7a4; 
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(143, 236, 150, 0.2);
+}
+
+.btn-secondary {
+    background-color: #6c757d; 
+    color: white;
+    box-shadow: 0 4px 10px rgba(108, 117, 125, 0.2);
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268; 
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(108, 117, 125, 0.3);
+}
+
+/* Estilos para el botón de Guardar (dentro del formulario de ingreso de productos) */
+#form-ingreso-productos button[type="submit"] {
+    /* ¡CLAVE! Ajustar el ancho y padding para que se vea bien */
+    width: auto; /* Ajustar el ancho al contenido o al 100% */
+    padding: 12px 25px; /* Padding adecuado */
+    margin: 20px auto 0 auto; /* Centrar y dar margen superior */
+    display: block; /* Para que ocupe su propia línea y se pueda centrar con margin: auto */
+    background-color: #ff1908; /* Color que tenias antes */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-weight: bold; /* Hacerlo más bold */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 5px 15px rgba(40, 167, 69, 0.2); /* Mantener sombra */
+}
+#form-ingreso-productos button[type="submit"]:hover {
+    background-color: #cc0000; /* Un rojo mas oscuro al hover */
+    transform: translateY(-2px); 
+}
+
+/* Estilos para el botón de cerrar sesión en la barra de navegación */
+#logout-btn-nav { /* Usar el ID para mayor especificidad si es necesario */
+    background-color: #ff1908; /* Rojo para el boton de logout */
+    color: white;
+    padding: 10px 15px;
+    border-radius: 4px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+#logout-btn-nav:hover {
+    background-color: #cc0000; /* Rojo mas oscuro al hover */
+    color: white;
+}
+
+
+/* Agrupar los botones para centrarlos (para formularios con multiples botones) */
+.form-buttons {
+    display: flex;
+    justify-content: center; /* Centrar los botones dentro de su contenedor */
+    gap: 20px; /* Espacio entre los botones */
+    margin-top: 10px; /* Margen superior para separarlos de los campos */
+    width: 100%; /* Ocupar todo el ancho para centrar bien */
+}
+
+
+/* Estilos para el contenedor de búsqueda */
+.search-container {
+    width: 100%;
+    max-width: 600px; 
+    margin: 30px auto 20px auto; 
+    padding: 0 10px; 
+    box-sizing: border-box;
+    display: flex; /* Para alinear el input y los botones de busqueda */
+    gap: 10px; /* Espacio entre el input y los botones */
+    align-items: center;
+}
+
+/* Estilos para el campo de entrada de búsqueda */
+.search-input {
+    flex-grow: 1; /* Permite que el input ocupe el espacio restante */
+    padding: 12px 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px; 
+    font-size: 1.1em;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+    transition: border-color 0.3s, box-shadow 0.3s;
+    box-sizing: border-box; /* Asegura que el padding no afecte el ancho */
+}
+
+.search-input::placeholder {
+    color: #999;
+}
+
+.search-input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 12px rgba(0, 123, 255, 0.25);
+    outline: none;
+}
+
+/* Estilo para accesibilidad si usas sr-only */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Estilos para el contenedor de exportar por rango de fecha */
+.filter-section { /* Cambiado de form-export-date-range a filter-section */
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: center; 
+    align-items: flex-end; 
+    gap: 20px; 
+    padding: 20px 10px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    margin-top: 30px;
+    box-shadow: inset 0 1px 5px rgba(0,0,0,0.05);
+    width: 100%; 
+    box-sizing: border-box;
+}
+
+/* Estilos para los grupos de campos de fecha dentro de filter-section */
+.filter-section .date-filter-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: flex-end;
+    flex: 1; /* Permite que este grupo crezca */
+    min-width: 250px; /* Ancho minimo para el grupo de filtros */
+}
+
+.filter-section .date-filter-group label,
+.filter-section .date-filter-group input {
+    flex: 1 1 auto; /* Permite que los labels y inputs se ajusten automaticamente */
+    min-width: 120px; /* Ancho minimo para cada input de fecha */
+}
+
+.filter-section .export-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.export-icon {
+    font-size: 2em;
+    color: #28a745; /* Color verde para el icono de Excel */
+    background-image: url('imagenes/excel.png'); /* Asegurate de que esta ruta sea correcta */
+}
+
+/* --- Estilos para el Selector de Idioma (Dropdown) --- */
+.language-switcher {
+    position: absolute; 
+    top: 15px; 
+    left: 15px; /* Posicion a la izquierda */
+    z-index: 1000; 
+    display: flex;
+    align-items: center;
+}
+
+.language-switcher select {
+    background-color: #f0f0f0; 
+    color: #333; 
+    border: 1px solid #ccc;
+    padding: 8px 12px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 0.95em;
+    font-weight: bold;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+    appearance: none; 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('../imagenes/excel.png'); 
+    background-repeat: no-repeat;
+    background-position: right 10px center; 
+    background-size: 12px auto;
+    padding-right: 30px; 
+    min-width: 120px; /* ¡CLAVE! Asegura que el texto del idioma sea visible */
+}
+
+.language-switcher select:hover {
+    background-color: #e0e0e0;
+    border-color: #999;
+}
+
+.language-switcher select:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+/* Media query para pantallas pequeñas */
+@media screen and (max-width: 768px) {
+    .language-switcher {
+        position: static; 
+        margin: 10px auto; 
+        justify-content: center; 
+        width: 100%; 
+        padding: 0 10px; 
+        box-sizing: border-box;
+        text-align: center; 
+    }
+    .language-switcher select {
+        width: 100%; 
+        min-width: unset; 
+    }
+}
+
+/* --- Media Queries para Responsividad --- */
+@media screen and (max-width: 992px) {
+    #form-ingreso-productos {
+        max-width: 700px; /* Ajustar max-width para 2 columnas */
+    }
+    .form-group {
+        flex: 1 1 calc(50% - 10px); /* Para 2 columnas */
+    }
+}
+
+@media screen and (max-width: 768px) {
+    main {
+        padding: 20px;
+    }
+    #form-ingreso-productos {
+        max-width: 100%; /* Ocupar todo el ancho en moviles */
+    }
+    .form-group {
+        flex: 1 1 100%; /* 1 columna en pantallas más pequeñas */
+        margin-right: 0; 
+    }
+    h1 {
+        font-size: 1.8em;
+    }
+    .main-nav {
+        flex-direction: column; 
+        align-items: flex-start; 
+    }
+    .nav-logo-container {
+        margin-bottom: 10px; 
+    }
+    .nav-list {
+        flex-wrap: wrap; /* Permitir que los elementos de la nav salten de linea */
+        justify-content: center;
+        width: 100%;
+    }
+    .nav-list li {
+        margin: 5px 10px; /* Ajustar margenes en moviles */
+    }
+    .dropdown-menu {
+        position: static; /* Cambiar a estatico para que el menu se muestre debajo */
+        width: 100%;
+        box-shadow: none;
+        border-radius: 0;
+        background-color: #f8f8f8; /* Fondo mas claro para el menu en moviles */
+    }
+    .dropdown-menu .dropdown-item {
+        padding-left: 30px; /* Indentar items del dropdown */
+    }
+
+    /* Para pantallas más pequeñas, los botones de acción se pueden apilar */
+    .form-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .btn-primary, .btn-secondary {
+        width: 100%; 
+        margin-right: 0; 
+    }
+
+    /* Ajustes para la seccion de busqueda y filtro en moviles */
+    .search-container {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+        margin-top: 50px;
+        max-width: 100%; /* Ocupa mas ancho en móviles */
+    }
+    .search-input {
+        width: 100%; /* Ocupa todo el ancho */
+        font-size: 1em;
+        padding: 10px 12px;
+    }
+    .filter-section {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 15px;
+    }
+    .filter-section .date-filter-group {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+        min-width: unset;
+    }
+    .filter-section .date-filter-group label,
+    .filter-section .date-filter-group input {
+        min-width: unset;
+    }
+    .filter-section .export-controls {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+    .btn-export-date {
+        width: 100%;
+        margin: 0;
+       
+    }
+}
+
+/* Estilos para el contenedor de acceso denegado */
+.access-denied-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 50px;
+    margin: 50px auto;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    max-width: 600px;
+    width: 90%;
+    box-sizing: border-box;
+}
+
+.access-denied-title {
+    color: #dc3545; 
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+.access-denied-message {
+    color: #6c757d;
+    font-size: 1.1em;
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.access-denied-button {
+    display: inline-block;
+    background-color: #ff1908; 
+    color: white; /* Cambiado a blanco para mejor contraste */
+    padding: 12px 25px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 20px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 10px rgba(255, 25, 8, 0.2); /* Sombra con color mas consistente */
+}
+
+.access-denied-button:hover {
+    background-color: #cc0000; /* Rojo mas oscuro al hover */
+    transform: translateY(-2px);
+}
+
+/* Para multiples botones, anadir margen entre ellos */
+.access-denied-button + .access-denied-button {
+    margin-left: 15px;
+}
+
+/* Media queries para responsividad de acceso denegado */
+@media screen and (max-width: 600px) {
+    .access-denied-title {
+        font-size: 2em;
+    }
+    .access-denied-message {
+        font-size: 1em;
+    }
+    .access-denied-button {
+        width: 100%;
+        margin-left: 0;
+        margin-top: 15px;
+    }
+    .access-denied-button + .access-denied-button {
+        margin-left: 0;
+    }
+}
